@@ -17,8 +17,7 @@ solve ((x, y, z) : xs)
   | correctSum x y z = x * y * z
   | otherwise = solve xs
 
-main = putStr $ unlines $ map show $ triples [1, 2, 3, 4, 5, 6]
---main = do
---  rawInput <- readFile "./1i.txt"
---  let parsedInput = (map read (words rawInput))
---  print $ solve $ everyTriple $ parsedInput
+main = do
+  rawInput <- readFile "./1i.txt"
+  let parsedInput = (map read (lines rawInput) :: [Int])
+  print $ solve $ triples parsedInput
