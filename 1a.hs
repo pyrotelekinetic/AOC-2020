@@ -3,9 +3,9 @@ correctSum x y
   | x + y == 2020 = True
   | otherwise = False
 
-everyPair :: [a] -> [(a, a)]
-everyPair (x : []) = []
-everyPair (x : xs) = map ((,) x) xs ++ everyPair xs
+pairs :: [a] -> [(a, a)]
+pairs (x : []) = []
+pairs (x : xs) = map ((,) x) xs ++ pairs xs
 
 solve :: Eq a => Num a => [(a, a)] -> a
 solve [] = 0
@@ -16,4 +16,4 @@ solve ((x, y) : xs)
 main = do
   rawInput <- readFile "./1i.txt"
   let parsedInput = (map read (words rawInput) :: [Int])
-  print $ solve $ everyPair $ parsedInput
+  print $ solve $ pairs $ parsedInput
