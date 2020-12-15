@@ -110,7 +110,7 @@ count c (x : xs) = case c == x of
 verify :: Policy -> String -> Bool
 verify (n1, n2, c) p = do
   let x = count c p
-  n1 < x && x < n1
+  n1 <= x && x <= n2
 
 valids :: [(Policy, String)] -> Int
 valids [] = 0
