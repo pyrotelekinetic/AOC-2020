@@ -116,7 +116,7 @@ valids :: [(Policy, String)] -> Int
 valids [] = 0
 valids ((p, s) : xs)
   | verify p s = 1 + valids xs
-  | otherwise = 0 + valids xs
+  | otherwise = valids xs
 
 main = do
   rawInput <- readFile "./2i.txt"
