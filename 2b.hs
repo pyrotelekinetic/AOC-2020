@@ -103,15 +103,13 @@ parse = unwrap . finishedP . runParser finalP
 
 elemIs :: Eq a => [a] -> a -> Int -> Bool
 elemIs [] _ _ = False
-elemIs (x : _) y 0 = x == y
+elemIs (x : _) y 1 = x == y
 elemIs (x : xs) y n = elemIs xs y (n - 1)
 
 verify :: Policy -> String -> Bool
 verify (n1, n2, c) p
   | length p < n2 || length p < n1 = False
-  | otherwise = case elemIs p c n1 of
-    True -> True
-    False -> elemIs p c n2
+  | otherwise = elemIs p c n1 /= elemIs p c n2
 
 valids :: [(Policy, String)] -> Int
 valids [] = 0
